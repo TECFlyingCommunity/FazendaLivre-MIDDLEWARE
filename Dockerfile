@@ -4,8 +4,8 @@ WORKDIR /smartfarm
 
 COPY . /smartfarm
 
-RUN apk --no-cache add openjdk17-jdk
-RUN apk --no-cache add maven
+# RUN apk --no-cache add openjdk17-jdk
+# RUN apk --no-cache add maven
 
 # RUN mvn clean package -DskipTes
 
