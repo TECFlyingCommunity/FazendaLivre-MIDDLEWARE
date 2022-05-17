@@ -20,8 +20,14 @@ public record SensorDTO(
 ) {
 
     public SensorDTO(SensorEntity entity) {
-        this(entity.getId(), entity.getTemperature(), entity.getLuminosity(), entity.getAirHumidity(),
-                entity.getSoilHumidity(),entity.getCreatedAt());
+        this(
+                entity.getId(),
+                entity.getTemperature(),
+                entity.getLuminosity(),
+                entity.getAirHumidity(),
+                entity.getSoilHumidity(),
+                entity.getCreatedAt()
+        );
     }
 
     public SensorEntity toEntity() {

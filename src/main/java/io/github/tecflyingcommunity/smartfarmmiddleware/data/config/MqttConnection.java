@@ -18,7 +18,7 @@ public class MqttConnection implements MqttCallback {
     }
 
     @Value("${host.mqtt.clientId:SmartFarm-Middleware}")
-    private String clientId ;
+    private String clientId;
 
     @Value("${host.mqtt.qos:2}")
     private int qos;
