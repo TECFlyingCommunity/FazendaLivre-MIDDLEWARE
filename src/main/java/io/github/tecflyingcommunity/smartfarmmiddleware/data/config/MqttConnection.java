@@ -20,7 +20,7 @@ public class MqttConnection implements MqttCallback {
     @Value("${host.mqtt.clientId:SmartFarm-Middleware}")
     private String clientId;
 
-    @Value("${host.mqtt.qos:2}")
+    @Value("${host.mqtt.qos:0}")
     private int qos;
 
     @Value("${host.mqtt.topic:SENSORES}")
@@ -38,7 +38,7 @@ public class MqttConnection implements MqttCallback {
 
     public void connect() throws MqttException {
 
-        MqttClient client = new MqttClient(mqttHost, clientId, new MemoryPersistence());
+        final MqttClient client = new MqttClient(mqttHost, clientId, new MemoryPersistence());
 
         final var options = new MqttConnectOptions();
 
@@ -62,6 +62,7 @@ public class MqttConnection implements MqttCallback {
 
     @Override
     public void messageArrived(String s, MqttMessage mqttMessage) throws Exception {
+        System.out.println("Message arrived: " + mqttMessage.toString());
         final var mapper = new ObjectMapper();
         final NewSensorDTO newSensorDTO = mapper.readValue(mqttMessage.toString(), NewSensorDTO.class);
         registerSensor.save(newSensorDTO);
